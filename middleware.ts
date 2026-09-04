@@ -12,11 +12,11 @@ export function middleware(request: NextRequest) {
 
   const csp = [
     `default-src 'self'`,
-    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'${devEval} https://www.googletagmanager.com https://challenges.cloudflare.com`,
+    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'${devEval} https://www.googletagmanager.com https://challenges.cloudflare.com https://plausible.io https://va.vercel-scripts.com`,
     `style-src 'self' 'unsafe-inline'`,
     `img-src 'self' data: blob: https://cdn.sanity.io https://www.google-analytics.com`,
     `font-src 'self' data:`,
-    `connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com`,
+    `connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://plausible.io https://va.vercel-scripts.com`,
     `frame-src 'self' https://app.cal.com https://cal.com https://challenges.cloudflare.com`,
     `frame-ancestors 'none'`,
     `form-action 'self'`,

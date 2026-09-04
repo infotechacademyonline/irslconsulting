@@ -1,37 +1,57 @@
 'use client';
 
+import { Analytics as VercelAnalytics } from '@vercel/analytics/next';
 import Script from 'next/script';
-import { useEffect, useState } from 'react';
 
 import { useConsent } from '@/components/consent/ConsentProvider';
 
 /**
- * Google Analytics 4 loader — mounts only when the user has granted the
- * `analytics` consent category. No script is fetched, no ID is exposed to the
- * network, before consent lands.
+ * Consent-gated analytics loaders.
+ *
+ * Three optional sinks — each fires only when its env var is present AND the
+ * user has granted the Analytics consent category:
+ *
+ *   - Google Analytics 4    (NEXT_PUBLIC_GA_MEASUREMENT_ID)
+ *   - Plausible             (NEXT_PUBLIC_PLAUSIBLE_DOMAIN — first-party friendly)
+ *   - Vercel Analytics      (auto-detected in Vercel; no ID needed)
+ *
+ * We still gate Vercel Analytics on consent even though it is first-party and
+ * cookie-less — this keeps the site consistent with the banner promise.
  */
 export function Analytics() {
   const { consent } = useConsent();
-  const [enabled, setEnabled] = useState(false);
-  const id = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
-
-  useEffect(() => {
-    setEnabled(consent.analytics);
-  }, [consent.analytics]);
-
-  if (!id || !enabled) return null;
+  const ga = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+  const plausible = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
+  const enabled = consent.analytics;
 
   return (
     <>
-      <Script src={`https://www.googletagmanager.com/gtag/js?id=${id}`} strategy="afterInteractive" />
-      <Script id="ga4-init" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${id}', { anonymize_ip: true });
-        `}
-      </Script>
+      {enabled && ga && (
+        <>
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${ga}`}
+            strategy="afterInteractive"
+          />
+          <Script id="ga4-init" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${ga}', { anonymize_ip: true });
+            `}
+          </Script>
+        </>
+      )}
+
+      {enabled && plausible && (
+        <Script
+          src="https://plausible.io/js/script.js"
+          data-domain={plausible}
+          strategy="afterInteractive"
+        />
+      )}
+
+      {enabled && <VercelAnalytics />}
     </>
   );
 }

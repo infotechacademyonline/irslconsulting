@@ -21,7 +21,7 @@ export async function bookConsultation(
   const ip = getClientIp(requestHeaders);
 
   // Rate limit — 5 submissions per 10 minutes per IP
-  const rl = rateLimit({
+  const rl = await rateLimit({
     key: `booking:${ip}`,
     limit: 5,
     windowMs: 10 * 60 * 1000,

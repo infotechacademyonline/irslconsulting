@@ -6,7 +6,19 @@ import { solutionSlugs } from '@/lib/content/solutions';
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   const base = site.url;
-  const routes = ['', '/about', '/solutions', '/engage', '/sectors', '/insights', '/book-a-call', '/careers'];
+  const routes = [
+    '',
+    '/about',
+    '/about/leadership',
+    '/solutions',
+    '/engage',
+    '/sectors',
+    '/partners',
+    '/case-studies',
+    '/insights',
+    '/book-a-call',
+    '/careers',
+  ];
   const solutionRoutes = solutionSlugs.map((slug) => `/solutions/${slug}`);
   return [...routes, ...solutionRoutes].map((path) => ({
     url: `${base}${path}`,

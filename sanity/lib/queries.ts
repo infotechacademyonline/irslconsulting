@@ -68,3 +68,78 @@ export interface PostCard {
   publishedAt: string;
   readingTimeMinutes?: number;
 }
+
+/**
+ * Case studies are ONLY returned when `permissionsCleared == true`. The
+ * schema also warns editors; this second layer of defence keeps
+ * unpublished stories off the site even if a schema check is bypassed.
+ */
+export const CASE_STUDIES_QUERY = /* groq */ `
+  *[_type == "caseStudy" && permissionsCleared == true]
+  | order(coalesce(publishedAt, _createdAt) desc) [0...50] {
+    _id,
+    client,
+    "slug": slug.current,
+    sector,
+    solution,
+    headline,
+    summary,
+    metrics,
+    coverImage,
+    engagementYear,
+    featured,
+    publishedAt
+  }
+`;
+
+export const FEATURED_CASE_STUDY_QUERY = /* groq */ `
+  *[_type == "caseStudy" && permissionsCleared == true && featured == true]
+  | order(coalesce(publishedAt, _createdAt) desc) [0]{
+    _id,
+    client,
+    "slug": slug.current,
+    sector,
+    solution,
+    headline,
+    summary,
+    quote,
+    quoteAttribution,
+    metrics,
+    coverImage
+  }
+`;
+
+export const CASE_STUDY_BY_SLUG_QUERY = /* groq */ `
+  *[_type == "caseStudy" && slug.current == $slug && permissionsCleared == true][0]{
+    _id,
+    client,
+    sector,
+    solution,
+    headline,
+    summary,
+    challenge,
+    approach,
+    outcome,
+    metrics,
+    quote,
+    quoteAttribution,
+    engagementYear,
+    coverImage,
+    publishedAt
+  }
+`;
+
+export interface CaseStudyCard {
+  _id: string;
+  client: string;
+  slug: string;
+  sector: string;
+  solution?: string;
+  headline: string;
+  summary: string;
+  metrics?: Array<{ value: string; label: string }>;
+  coverImage?: unknown;
+  engagementYear?: number;
+  featured?: boolean;
+  publishedAt?: string;
+}

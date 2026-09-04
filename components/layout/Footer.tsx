@@ -38,6 +38,7 @@ export function Footer() {
             <FooterLink href="/partners">Partners</FooterLink>
             <FooterLink href="/engage">Engage</FooterLink>
             <FooterLink href="/sectors">Sectors</FooterLink>
+            <FooterLink href="/case-studies">Case studies</FooterLink>
             <FooterLink href="/insights">Insights &amp; Blog</FooterLink>
             <FooterLink href="/careers">Careers &amp; Talent</FooterLink>
           </FooterCol>

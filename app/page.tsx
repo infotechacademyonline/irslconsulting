@@ -3,6 +3,7 @@ import { CtaBand } from '@/components/layout/CtaBand';
 import { DeliveryPhases } from '@/components/sections/DeliveryPhases';
 import { EngageGrid } from '@/components/sections/EngageGrid';
 import { Faq } from '@/components/sections/Faq';
+import { FeaturedCaseStudy } from '@/components/sections/FeaturedCaseStudy';
 import { Hero } from '@/components/sections/Hero';
 import { PartnerStrip } from '@/components/sections/PartnerStrip';
 import { PlatformBand } from '@/components/sections/PlatformBand';
@@ -19,6 +20,7 @@ export default function HomePage() {
       <PlatformBand />
       <AboutLede />
       <SolutionsGrid />
+      <FeaturedCaseStudy />
       <EngageGrid />
       <SectorsGrid />
       <DeliveryPhases />
