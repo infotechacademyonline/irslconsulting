@@ -92,11 +92,15 @@ See [`.env.example`](.env.example). All secrets are server-only; only variables 
 | `RESEND_API_KEY`                | Transactional email                            |
 | `BOOKING_INBOX`                 | Where the booking form sends leads             |
 | `TURNSTILE_SECRET_KEY`          | Cloudflare Turnstile server verification       |
-| `UPSTASH_REDIS_REST_*`          | Optional — swap in for multi-region ratelimit  |
+| `NEXT_PUBLIC_PLAUSIBLE_DOMAIN`  | Plausible domain — optional, consent-gated     |
+| `UPSTASH_REDIS_REST_URL`        | Optional — swap in for multi-region ratelimit  |
+| `UPSTASH_REDIS_REST_TOKEN`      | Paired with the URL above                      |
+| `SANITY_API_READ_TOKEN`         | Required for Presentation Tool preview drafts  |
+| `SANITY_REVALIDATE_SECRET`      | Shared secret for the webhook + draft toggle   |
 
 ## Security posture
 
-- **CSP** — strict, nonce-based, no `unsafe-inline`, no `unsafe-eval`. Set in `middleware.ts`.
+- **CSP** — strict, nonce-based. In production: no `unsafe-inline`, no `unsafe-eval`. In dev only, `unsafe-eval` is allowed so Next.js HMR works. Set in `middleware.ts`.
 - **Security headers** — HSTS, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, `X-Frame-Options`, `frame-ancestors 'none'`.
 - **Booking form**
   - Zod validation at the server-action boundary.
@@ -164,7 +168,45 @@ build and every other page still work.
 - **JSON-LD** — `Organization` on every page (root layout), `Service` on each
   solution detail, `FAQPage` on any page with the FAQ section, `Article` on
   Insights posts. Helpers in `lib/jsonld.ts`.
-- **RSS feed** — `/insights/rss.xml`, sourced from Sanity, cached for 5 min.
+- **RSS feed** — `/insights/rss.xml`, sourced from Sanity, cached for 5 min,
+  auto-discovered via `<link rel="alternate">` in the root layout.
+- **Cal.com** slot picker — embedded on the Book-a-Call page alongside the
+  form. Set `NEXT_PUBLIC_CAL_LINK` to activate; renders a placeholder
+  otherwise.
+- **Leadership** and **Careers** pages read `principal` and `openRole`
+  documents from Sanity, with graceful empty-states.
+
+## Case studies + presentation tool + Upstash + first-party analytics (Phase 4)
+
+- **Case studies** — new Sanity `caseStudy` schema with a
+  `permissionsCleared` boolean guard. Every GROQ query and the home
+  `FeaturedCaseStudy` block filter on that flag; Studio previews show a
+  ⚠ prefix and *"NOT CLEARED — not visible on the site"* subtitle until it
+  is ticked. Pages: `/case-studies` index and `/case-studies/[slug]`
+  detail with metrics, Challenge / Approach / Outcome sections, and
+  linked-solution back-references.
+- **Upstash rate-limit** — `lib/ratelimit.ts` picks its backend at
+  request time. When `UPSTASH_REDIS_REST_URL` + `_TOKEN` are set, limits
+  are enforced through the Upstash sliding-window API (multi-region,
+  durable). Otherwise it falls back to the in-memory limiter. API stays
+  the same for callers.
+- **Privacy-first analytics** — three optional sinks now live behind the
+  Analytics consent category:
+  - **GA4** (`NEXT_PUBLIC_GA_MEASUREMENT_ID`)
+  - **Plausible** (`NEXT_PUBLIC_PLAUSIBLE_DOMAIN`) — first-party friendly,
+    cookieless
+  - **Vercel Analytics** — auto-detects the Vercel host
+
+  Each sink loads only if its env var is present *and* the user has
+  granted consent. CSP is pre-configured to allow all three origins.
+- **Sanity Presentation Tool** — `presentationTool` plugin added to
+  `sanity.config.ts`. Studio editors can toggle *"Presentation"* to see
+  every Sanity-backed page render live with their unpublished edits, via
+  a shared-secret preview URL. Two routes drive this:
+  `/api/draft-mode/enable` (secret check → `draftMode.enable()`) and
+  `/api/draft-mode/disable`. `sanityFetch` automatically switches to the
+  `previewDrafts` perspective whenever `draftMode()` is on — no per-page
+  changes needed to opt in.
   Auto-discoverable via `<link>` in the root layout.
 - **Cal.com** slot picker — embedded on the Book-a-Call page next to the
   form. Set `NEXT_PUBLIC_CAL_LINK` (e.g. `irsl-nigeria/consultation`) to
@@ -174,12 +216,14 @@ build and every other page still work.
 
 ## Roadmap
 
-### Phase 4 (optional)
-- **Case studies** page once written client permissions are in.
-- **Multi-region rate limiting** — swap the in-memory limiter for Upstash.
-- **Vercel Analytics** or **Plausible** as a privacy-first first-party
-  alternative to GA4.
-- **Sanity Presentation Tool** — live preview inside Studio.
+### Phase 5 (optional, not yet delivered)
+- **Search** — Sanity `defineLiveQuery` + a tiny client for `/insights`.
+- **Comments / notes on case studies** — Sanity `document` references for
+  internal engagement notes (auth-gated).
+- **`next/dynamic` split** of the Sanity Studio bundle from the
+  marketing bundle (currently already lazy — this would trim further).
+- **Cross-language** — Igbo, Yoruba, Hausa marketing pages via
+  `hreflang` sub-routes if the client wants them.
 
 ## Deploy
 

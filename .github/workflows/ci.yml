@@ -10,37 +10,79 @@ concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  # Skip Husky in CI — hooks aren't wanted here.
+  HUSKY: 0
+  # Fixtures for build-time-only calls; runtime env comes from Vercel.
+  NEXT_PUBLIC_SITE_URL: https://irslconsulting.ng
+
 jobs:
   quality:
+    name: Typecheck · Lint · Unit · Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version-file: .nvmrc
           cache: npm
-      - run: npm ci
-      - run: npm run typecheck
-      - run: npm run lint
-      - run: npm run test
-      - run: npm run build
-      - name: Audit high-severity vulnerabilities
+
+      # `.npmrc` sets legacy-peer-deps=true — needed for the Sanity + Vercel
+      # Analytics peer overlap.
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Unit tests
+        run: npm run test
+
+      - name: Build
+        run: npm run build
+
+      - name: Audit (high severity only)
         run: npm audit --audit-level=high || true
 
   e2e:
+    name: End-to-end (Playwright)
     runs-on: ubuntu-latest
     needs: quality
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version-file: .nvmrc
           cache: npm
-      - run: npm ci
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Cache Playwright browsers
+        id: pw-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-
+
       - name: Install Playwright browsers
+        if: steps.pw-cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps chromium webkit
-      - run: npx playwright test
-      - if: always()
+
+      - name: Install system deps only (cached browsers)
+        if: steps.pw-cache.outputs.cache-hit == 'true'
+        run: npx playwright install-deps chromium webkit
+
+      - name: Run E2E
+        run: npm run test:e2e
+
+      - name: Upload Playwright report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report

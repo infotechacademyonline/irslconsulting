@@ -31,7 +31,7 @@ export default async function CaseStudiesPage() {
             Named engagements, published only with written permission.
           </h1>
           <p className="mt-6 max-w-[68ch] text-[17px] leading-relaxed text-muted">
-            Every case study on this page is on the record with the client's sign-off. If a
+            Every case study on this page is on the record with the client&rsquo;s sign-off. If a
             reference is not here, it is either still under NDA or awaiting permission-to-publish.
           </p>
 
