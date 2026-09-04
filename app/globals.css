@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --white: #ffffff;
+    --paper: #fbfbfb;
+    --panel: #f7f7f7;
+    --tint: #ebf2fe;
+    --border: #e5e5e6;
+    --border-2: #cacbcd;
+    --ink: #000000;
+    --ink-2: #1b1d21;
+    --ink-3: #3a3c45;
+    --muted: #585a60;
+    --muted-2: #75777c;
+    --muted-3: #919397;
+    --blue: #4b83fc;
+    --blue-2: #89acfc;
+    --blue-deep: #2e5fcc;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: light;
+  }
+
+  body {
+    background: var(--white);
+    color: var(--ink-2);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Skip link — visible only on focus */
+  .skip-link:not(:focus) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .skip-link:focus {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 100;
+    background: var(--blue);
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+  }
+}
