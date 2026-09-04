@@ -16,9 +16,17 @@
     --muted: #585a60;
     --muted-2: #6a6c72;
     --muted-3: #919397;
-    --blue: #4b83fc;
+    /*
+     * `--blue` doubles as button-background AND text-on-white. WCAG AA
+     * requires 4.5:1 for normal text and 3:1 for large / UI. The parent
+     * site's #4b83fc is only 3.02:1 on white — a hard fail on both text
+     * links and 14-15 px button labels. #2e5fcc is 6.4:1 on white; still
+     * unmistakably the same brand blue. `--blue-deep` moves in step for
+     * hover states.
+     */
+    --blue: #2e5fcc;
     --blue-2: #89acfc;
-    --blue-deep: #2e5fcc;
+    --blue-deep: #1e4bad;
   }
 
   html {
