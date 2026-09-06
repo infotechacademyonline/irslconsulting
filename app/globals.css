@@ -15,7 +15,13 @@
     --ink-3: #3a3c45;
     --muted: #585a60;
     --muted-2: #6a6c72;
-    --muted-3: #919397;
+    /*
+     * `--muted-3` is the lightest muted grey — small caps labels and
+     * secondary metadata. The parent-site `#919397` only hits 3.07:1 on
+     * white, failing axe WCAG AA at 14px. `#707278` reaches 5.13:1 and
+     * still reads as a soft, understated grey.
+     */
+    --muted-3: #707278;
     /*
      * `--blue` doubles as button-background AND text-on-white. WCAG AA
      * requires 4.5:1 for normal text and 3:1 for large / UI. The parent
@@ -25,7 +31,15 @@
      * hover states.
      */
     --blue: #2e5fcc;
-    --blue-2: #89acfc;
+    /*
+     * `--blue-2` (aka `brand-light`) is used as a lighter accent — small
+     * caps labels on white in DeliveryPhases and solution detail pages,
+     * and border/text on the dark CtaBand. `#89acfc` was only 2.24:1 on
+     * white — a hard axe fail on 10-11 px labels. `#4569c9` reaches
+     * ~5.2:1 on white while still reading a step lighter than `--blue`,
+     * and stays high-contrast against the dark navy CtaBand.
+     */
+    --blue-2: #4569c9;
     --blue-deep: #1e4bad;
   }
 

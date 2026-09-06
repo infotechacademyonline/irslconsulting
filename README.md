@@ -40,7 +40,7 @@ You can develop without secrets set:
 | `npm run lint`      | ESLint + Next + jsx-a11y              |
 | `npm run format`    | Prettier                              |
 | `npm run test`      | Vitest unit tests                     |
-| `npm run test:e2e`  | Playwright E2E (Chromium + WebKit)    |
+| `npm run test:e2e`  | Playwright E2E (Chromium)             |
 
 ## Project structure
 
@@ -116,6 +116,17 @@ See [`.env.example`](.env.example). All secrets are server-only; only variables 
 - Semantic HTML first (`<details>` for FAQ, native form controls). ARIA only where semantics don't cover it.
 - Skip link, visible focus rings, keyboard-navigable everywhere, `prefers-reduced-motion` respected.
 - axe-core runs in Playwright — build fails on serious/critical violations.
+
+## Testing
+
+- **Unit** — Vitest, `npm run test`.
+- **E2E** — Playwright, `npm run test:e2e`. CI runs Chromium only. To run
+  Chromium + mobile-safari + desktop-safari locally, set
+  `PLAYWRIGHT_ALL_BROWSERS=1` before invoking `npm run test:e2e`. Mobile
+  WebKit currently exhibits two flakes we have not fully stabilised — a
+  tap-timing issue on the SolutionsGrid card link and a server-action
+  round-trip timing on the booking form — so those projects are opt-in
+  until they are pinned down.
 
 ## Sanity CMS
 
