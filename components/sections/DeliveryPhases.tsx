@@ -21,7 +21,7 @@ export function DeliveryPhases() {
         <div className="grid grid-cols-1 gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-5">
           {phases.map((p) => (
             <div key={p.title} className="bg-white p-6">
-              <div className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-light">
+              <div className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-brand">
                 {p.n}
               </div>
               <h4 className="mb-2 mt-3 text-[17px] font-bold tracking-tight text-ink">{p.title}</h4>
