@@ -7,7 +7,7 @@ function resolveSiteUrl(): string {
 }
 
 export const site = {
-  name: 'IRSL Consulting Nigeria',
+  name: 'IRSL Consulting',
   legalName: 'Infotech Risks Security',
   tagline: 'Risks · Compliance · Audit Consulting',
   // Fall back through: an empty-string env var (Vercel's default for

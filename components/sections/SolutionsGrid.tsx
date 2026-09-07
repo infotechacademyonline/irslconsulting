@@ -56,7 +56,7 @@ export function SolutionsGrid({ withHeader = true }: { withHeader?: boolean }) {
           <div className="max-w-[78ch]">
             <div className="mb-1.5 text-[16px] font-bold tracking-tight text-ink">Not on the list?</div>
             <p className="text-[14.5px] leading-relaxed text-ink-3">
-              These nine are the challenges we see most often — but IRSL Nigeria also takes on ESG
+              These nine are the challenges we see most often — but IRSL Consulting also takes on ESG
               &amp; sustainability reporting (FRC NSRS, NGX Sustainability Guidelines), SOX-parity
               readiness, ISO 27001 audit support, incident response programmes, and other adjacent
               risk-and-compliance work. If the problem lives in the risk, controls, audit or

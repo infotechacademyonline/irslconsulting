@@ -11,7 +11,7 @@ import type { Image as SanityImage } from 'sanity';
 export const metadata: Metadata = {
   title: 'Insights',
   description:
-    'The IRSL Nigeria Regulator Brief — analysis of what the CBN, NDPC, and FRC have said and what it means for your GRC posture.',
+    'The IRSL Consulting Regulator Brief — analysis of what the CBN, NDPC, and FRC have said and what it means for your GRC posture.',
 };
 
 export const revalidate = 60;

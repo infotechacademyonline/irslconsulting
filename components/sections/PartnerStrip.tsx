@@ -4,7 +4,7 @@ import { site } from '@/lib/content/site';
 export function PartnerStrip() {
   return (
     <div className="border-y border-border bg-panel py-5">
-      <Container className="flex flex-wrap items-center justify-between gap-9">
+      <Container className="flex flex-wrap items-center gap-4 sm:justify-between sm:gap-9">
         <span className="whitespace-nowrap font-mono text-[10.5px] font-medium uppercase tracking-[0.14em] text-muted-2">
           Technology partners &amp; ecosystem
         </span>

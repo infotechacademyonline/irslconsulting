@@ -4,13 +4,13 @@ import { site } from '@/lib/content/site';
 
 export function CtaBand() {
   return (
-    <section id="contact" className="bg-ink-2 py-20 text-white">
-      <Container className="grid items-end gap-14 lg:grid-cols-[1.4fr_1fr]">
+    <section id="contact" className="bg-ink-2 py-14 text-white md:py-20">
+      <Container className="grid items-end gap-10 lg:grid-cols-[1.4fr_1fr] lg:gap-14">
         <div>
           <span className="inline-flex items-center gap-2.5 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-brand-light before:h-px before:w-5 before:bg-brand-light before:content-['']">
             Ready to start
           </span>
-          <h2 className="mt-4 max-w-[24ch] text-4xl font-bold leading-tight tracking-tight text-white sm:text-[42px]">
+          <h2 className="mt-4 max-w-[24ch] text-[28px] font-bold leading-tight tracking-tight text-white sm:text-[42px]">
             Book a 30-minute strategy call with an IRSL principal.
           </h2>
           <p className="mt-5 max-w-[52ch] text-[16px] text-white/75">
@@ -55,10 +55,12 @@ function ContactRow({ label, href, value }: { label: string; href: string; value
   return (
     <a
       href={href}
-      className="flex items-baseline justify-between gap-3 border-b border-white/15 pb-2.5 font-medium last:border-0 last:pb-0"
+      className="flex flex-col gap-0.5 border-b border-white/15 pb-2.5 font-medium last:border-0 last:pb-0 sm:flex-row sm:items-baseline sm:justify-between sm:gap-3"
     >
       <span>{label}</span>
-      <span className="font-mono text-[12px] tracking-tight text-brand-light">{value}</span>
+      <span className="break-all font-mono text-[12px] tracking-tight text-brand-light sm:break-normal">
+        {value}
+      </span>
     </a>
   );
 }

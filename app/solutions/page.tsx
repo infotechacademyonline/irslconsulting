@@ -7,7 +7,7 @@ import { SolutionsGrid } from '@/components/sections/SolutionsGrid';
 export const metadata: Metadata = {
   title: 'Solutions — Nine of the problems we solve most often',
   description:
-    'The nine anchor business problems IRSL Nigeria solves — from access risk to platform security — plus the adjacent risk, audit and compliance work we take on.',
+    'The nine anchor business problems IRSL Consulting solves — from access risk to platform security — plus the adjacent risk, audit and compliance work we take on.',
 };
 
 export default function SolutionsPage() {

@@ -20,7 +20,7 @@ export default function CookiesPage() {
 
         <div className="prose mt-8 text-[15px] leading-relaxed text-ink-3">
           <p>
-            IRSL Consulting Nigeria stores a small amount of information on your device to run this
+            IRSL Consulting stores a small amount of information on your device to run this
             website and — with your consent — to understand how it is used. This notice explains
             what is stored, why, and how to change your mind.
           </p>

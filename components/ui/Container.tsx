@@ -8,6 +8,6 @@ export function Container({
   children: React.ReactNode;
 }) {
   return (
-    <div className={clsx('mx-auto w-full max-w-wrap px-6', className)}>{children}</div>
+    <div className={clsx('mx-auto w-full max-w-wrap px-4 sm:px-6', className)}>{children}</div>
   );
 }

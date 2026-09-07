@@ -10,7 +10,7 @@ import type { Image as SanityImage } from 'sanity';
 
 export const metadata: Metadata = {
   title: 'Leadership',
-  description: 'The principals accountable for your engagement at IRSL Consulting Nigeria.',
+  description: 'The principals accountable for your engagement at IRSL Consulting.',
 };
 
 export const revalidate = 60;

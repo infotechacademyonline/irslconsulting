@@ -17,7 +17,7 @@ export default function PrivacyPage() {
         </p>
         <div className="prose mt-8 max-w-[70ch] text-[15px] leading-relaxed text-ink-3">
           <p>
-            How IRSL Consulting Nigeria collects, uses, and protects personal data in the course of
+            How IRSL Consulting collects, uses, and protects personal data in the course of
             advisory, delivery, and recruitment. Full policy to be signed off with counsel before
             launch.
           </p>

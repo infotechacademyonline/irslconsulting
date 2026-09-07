@@ -5,21 +5,21 @@ import { site } from '@/lib/content/site';
 
 export function Hero() {
   return (
-    <header className="relative overflow-hidden py-16 md:py-20 lg:py-24">
+    <header className="relative overflow-hidden py-12 md:py-20 lg:py-24">
       <HeroBg />
-      <Container className="relative z-10 grid gap-16 lg:grid-cols-[1.35fr_1fr]">
+      <Container className="relative z-10 grid gap-10 lg:grid-cols-[1.35fr_1fr] lg:gap-16">
         <div>
           <span className="inline-flex items-center gap-3.5 rounded-full border border-brand/25 bg-tint px-3.5 py-2 font-mono text-[11px] font-medium uppercase tracking-[0.1em] text-brand-deep">
             <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-brand" />
             {site.tagline}
           </span>
-          <h1 className="mt-5 max-w-[24ch] text-[38px] font-bold leading-[1.05] tracking-tight text-ink text-balance md:text-[48px] lg:text-[58px]">
+          <h1 className="mt-5 max-w-[24ch] text-[32px] font-bold leading-[1.08] tracking-tight text-ink text-balance sm:text-[38px] md:text-[48px] lg:text-[58px]">
             The business problems your regulator will not wait for you to solve.
           </h1>
-          <p className="mt-4 text-[20px] font-medium leading-snug tracking-tight text-ink-3">
+          <p className="mt-4 text-[18px] font-medium leading-snug tracking-tight text-ink-3 sm:text-[20px]">
             Solved on the platform you already run.
           </p>
-          <p className="mt-6 max-w-[64ch] text-[17.5px] leading-relaxed text-muted">
+          <p className="mt-6 max-w-[64ch] text-[16px] leading-relaxed text-muted sm:text-[17.5px]">
             <strong className="font-semibold text-ink">{site.name}</strong> — a practice of{' '}
             <strong className="font-semibold text-ink">{site.legalName}</strong> — is the Nigerian
             Governance, Risk &amp; Compliance advisory firm built for banks, oil &amp; gas operators,
@@ -47,7 +47,7 @@ export function Hero() {
 
         <aside
           aria-label="The Nigerian regulatory perimeter"
-          className="relative rounded-lg border border-border bg-panel p-8 shadow-[0_4px_24px_rgba(0,0,0,0.04)] before:absolute before:left-0 before:top-0 before:h-[3px] before:w-11 before:bg-brand before:content-['']"
+          className="relative rounded-lg border border-border bg-panel p-6 shadow-[0_4px_24px_rgba(0,0,0,0.04)] before:absolute before:left-0 before:top-0 before:h-[3px] before:w-11 before:bg-brand before:content-[''] sm:p-8"
         >
           <h4 className="mb-2 font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-muted-2">
             Nigerian Regulatory Perimeter
@@ -59,7 +59,7 @@ export function Hero() {
             {site.regulators.map((r) => (
               <li
                 key={r.code}
-                className="grid grid-cols-[92px_1fr] gap-3.5 border-b border-border pb-3 text-[13px] leading-relaxed text-ink-3 last:border-0 last:pb-0"
+                className="grid grid-cols-[76px_1fr] gap-3 border-b border-border pb-3 text-[13px] leading-relaxed text-ink-3 last:border-0 last:pb-0 sm:grid-cols-[92px_1fr] sm:gap-3.5"
               >
                 <span className="pt-0.5 font-mono text-[11px] font-medium tracking-tight text-brand">
                   {r.code}
