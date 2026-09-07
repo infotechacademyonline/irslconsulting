@@ -1,8 +1,18 @@
+function resolveSiteUrl(): string {
+  const explicit = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (explicit) return explicit;
+  const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim();
+  if (vercel) return `https://${vercel}`;
+  return 'https://irslconsulting.ng';
+}
+
 export const site = {
   name: 'IRSL Consulting Nigeria',
   legalName: 'Infotech Risks Security',
   tagline: 'Risks · Compliance · Audit Consulting',
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://irslconsulting.ng',
+  // Fall back through: an empty-string env var (Vercel's default for
+  // unset public vars at build time) must NOT reach `new URL('')`.
+  url: resolveSiteUrl(),
   address: {
     street: '24 Mabinuori Street, Shangisha',
     city: 'Magodo, Lagos',
