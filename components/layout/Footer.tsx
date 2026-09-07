@@ -21,8 +21,11 @@ export function Footer() {
                 height={52}
                 className="h-12 w-12"
               />
-              <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-2">
-                {site.legalName} · Nigeria
+              <span className="flex flex-col leading-tight">
+                <span className="text-[18px] font-extrabold tracking-tight">{site.name}</span>
+                <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-2">
+                  {site.legalName} · Nigeria
+                </span>
               </span>
             </Link>
             <div className="mt-3 font-mono text-[10.5px] font-medium uppercase tracking-[0.12em] text-brand">

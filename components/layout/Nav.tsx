@@ -45,8 +45,13 @@ export function Nav() {
             priority
             className="h-10 w-10 md:h-11 md:w-11"
           />
-          <span className="hidden font-mono text-[9.5px] font-medium uppercase tracking-[0.14em] text-muted-2 sm:block">
-            {site.legalName} · Risks · Compliance · Audit
+          <span className="flex flex-col leading-tight">
+            <span className="text-[16px] font-extrabold tracking-tight text-ink md:text-[18px]">
+              {site.name}
+            </span>
+            <span className="mt-0.5 hidden font-mono text-[9.5px] font-medium uppercase tracking-[0.14em] text-muted-2 sm:block">
+              {site.legalName} · Risks · Compliance · Audit
+            </span>
           </span>
         </Link>
 
