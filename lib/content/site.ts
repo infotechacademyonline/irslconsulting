@@ -3,7 +3,7 @@ function resolveSiteUrl(): string {
   if (explicit) return explicit;
   const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim();
   if (vercel) return `https://${vercel}`;
-  return 'https://irslconsulting.ng';
+  return 'https://irslconsulting.com/ng';
 }
 
 export const site = {
@@ -19,7 +19,7 @@ export const site = {
     country: 'Nigeria',
     phone: '+234 812 871 6874',
     phoneHref: 'tel:+2348128716874',
-    hours: 'Mon–Fri · 08:30–17:30 WAT',
+    hours: 'Mon–Fri · 09:00–17:00 WAT',
   },
   email: {
     info: 'info@irslconsulting.ng',

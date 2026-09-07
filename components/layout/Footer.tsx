@@ -32,31 +32,17 @@ export function Footer() {
             </p>
 
             <div className="mt-5">
-              <h6 className="mb-3 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-muted-2">
-                Technology partners
-              </h6>
-              <ul className="flex flex-wrap items-center gap-2">
-                <li>
-                  <span className="inline-flex items-center gap-2 rounded border border-border bg-white px-2.5 py-1.5">
-                    <span
-                      aria-label="SAP"
-                      className="inline-flex h-5 items-center justify-center rounded-sm bg-gradient-to-r from-[#003D82] to-[#0FAAFF] px-1.5 text-[10.5px] font-extrabold tracking-tight text-white"
-                    >
-                      SAP
-                    </span>
-                    <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.1em] text-ink">
-                      Partner
-                    </span>
-                  </span>
-                </li>
-                {site.partners.map((p) => (
-                  <li key={p}>
-                    <span className="inline-block rounded border border-border bg-white px-2.5 py-1.5 text-[12px] font-semibold text-muted">
-                      {p}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+              <span className="inline-flex items-center gap-2 rounded border border-border bg-white px-2.5 py-1.5">
+                <span
+                  aria-label="SAP"
+                  className="inline-flex h-5 items-center justify-center rounded-sm bg-gradient-to-r from-[#003D82] to-[#0FAAFF] px-1.5 text-[10.5px] font-extrabold tracking-tight text-white"
+                >
+                  SAP
+                </span>
+                <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.1em] text-ink">
+                  Partner
+                </span>
+              </span>
             </div>
           </div>
 

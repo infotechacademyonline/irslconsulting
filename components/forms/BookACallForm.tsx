@@ -130,7 +130,7 @@ export function BookACallForm() {
 
       <SubmitButton />
       <p className="text-[12px] text-muted-2">
-        We reply within one business day, Mon–Fri 08:30–17:30 WAT. Data used only for this enquiry
+        We reply within one business day, Mon–Fri 09:00–17:00 WAT. Data used only for this enquiry
         (see our{' '}
         <a href="/privacy" className="text-brand">
           Privacy Notice

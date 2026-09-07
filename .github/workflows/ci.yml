@@ -14,7 +14,7 @@ env:
   # Skip Husky in CI — hooks aren't wanted here.
   HUSKY: 0
   # Fixtures for build-time-only calls; runtime env comes from Vercel.
-  NEXT_PUBLIC_SITE_URL: https://irslconsulting.ng
+  NEXT_PUBLIC_SITE_URL: https://irslconsulting.com/ng
 
 jobs:
   quality:

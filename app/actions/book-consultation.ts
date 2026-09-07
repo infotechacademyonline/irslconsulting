@@ -70,6 +70,6 @@ export async function bookConsultation(
 
   return {
     ok: true,
-    message: 'Thanks — a principal will reply within one business day, Mon–Fri, 08:30–17:30 WAT.',
+    message: 'Thanks — a principal will reply within one business day, Mon–Fri, 09:00–17:00 WAT.',
   };
 }
