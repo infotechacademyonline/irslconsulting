@@ -5,6 +5,7 @@ import { EngageGrid } from '@/components/sections/EngageGrid';
 import { Faq } from '@/components/sections/Faq';
 import { FeaturedCaseStudy } from '@/components/sections/FeaturedCaseStudy';
 import { Hero } from '@/components/sections/Hero';
+import { ImpactBand } from '@/components/sections/ImpactBand';
 import { PartnerStrip } from '@/components/sections/PartnerStrip';
 import { PlatformBand } from '@/components/sections/PlatformBand';
 import { SectorsGrid } from '@/components/sections/SectorsGrid';
@@ -19,6 +20,7 @@ export default function HomePage() {
       <TrustStrip />
       <PlatformBand />
       <AboutLede />
+      <ImpactBand />
       <SolutionsGrid />
       <FeaturedCaseStudy />
       <EngageGrid />

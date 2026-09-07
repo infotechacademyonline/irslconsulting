@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" role="img" aria-label="Lagos skyline stylised">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0b1a3d"/>
+      <stop offset="1" stop-color="#1e4bad"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2e5fcc" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#2e5fcc" stop-opacity="0.1"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="300" fill="url(#sky)"/>
+  <!-- Distant hills -->
+  <path d="M0 210 Q 200 190 400 205 T 800 200 T 1200 210 L 1200 260 L 0 260 Z" fill="#0b1a3d" opacity="0.7"/>
+  <!-- Buildings -->
+  <g fill="#89acfc" opacity="0.9">
+    <rect x="60" y="150" width="30" height="90"/>
+    <rect x="100" y="120" width="42" height="120"/>
+    <rect x="150" y="140" width="26" height="100"/>
+    <rect x="185" y="90" width="52" height="150"/>
+    <rect x="250" y="130" width="32" height="110"/>
+    <rect x="290" y="105" width="60" height="135"/>
+    <rect x="360" y="145" width="28" height="95"/>
+    <rect x="395" y="80" width="70" height="160"/>
+    <rect x="475" y="120" width="40" height="120"/>
+    <rect x="525" y="60" width="46" height="180"/>
+    <rect x="580" y="100" width="34" height="140"/>
+    <rect x="625" y="130" width="52" height="110"/>
+    <rect x="690" y="70" width="42" height="170"/>
+    <rect x="745" y="115" width="36" height="125"/>
+    <rect x="790" y="140" width="28" height="100"/>
+    <rect x="825" y="90" width="54" height="150"/>
+    <rect x="890" y="130" width="32" height="110"/>
+    <rect x="930" y="105" width="42" height="135"/>
+    <rect x="985" y="145" width="30" height="95"/>
+    <rect x="1025" y="120" width="36" height="120"/>
+    <rect x="1070" y="90" width="50" height="150"/>
+    <rect x="1130" y="140" width="26" height="100"/>
+  </g>
+  <!-- Window glints -->
+  <g fill="#ffffff" opacity="0.7">
+    <rect x="203" y="105" width="4" height="4"/>
+    <rect x="215" y="130" width="4" height="4"/>
+    <rect x="410" y="105" width="4" height="4"/>
+    <rect x="440" y="140" width="4" height="4"/>
+    <rect x="540" y="90" width="4" height="4"/>
+    <rect x="704" y="95" width="4" height="4"/>
+    <rect x="840" y="120" width="4" height="4"/>
+    <rect x="1085" y="115" width="4" height="4"/>
+  </g>
+  <!-- Water -->
+  <rect y="240" width="1200" height="60" fill="url(#water)"/>
+  <g stroke="#89acfc" stroke-width="0.6" opacity="0.6" fill="none">
+    <path d="M0 258 Q 80 253 160 258 T 320 258 T 480 258 T 640 258 T 800 258 T 960 258 T 1120 258 T 1200 258"/>
+    <path d="M0 274 Q 80 269 160 274 T 320 274 T 480 274 T 640 274 T 800 274 T 960 274 T 1120 274 T 1200 274"/>
+  </g>
+</svg>

@@ -76,30 +76,81 @@ export function Hero() {
 
 function HeroBg() {
   return (
-    <svg
-      className="pointer-events-none absolute -right-20 -top-10 z-0 h-[520px] w-[520px] opacity-50 md:h-[360px] md:w-[360px]"
-      viewBox="0 0 400 400"
-      aria-hidden="true"
-    >
-      {[180, 140, 100, 60].map((r) => (
-        <circle key={r} cx="200" cy="200" r={r} fill="none" stroke="#4B83FC" strokeWidth="0.5" opacity="0.4" />
-      ))}
-      <g stroke="#4B83FC" strokeWidth="1" fill="none">
-        <path
-          d="M200 40 L340 100 L340 220 Q340 300 200 360 Q60 300 60 220 L60 100 Z"
-          opacity="0.6"
-        />
-        <path
-          d="M200 90 L290 130 L290 210 Q290 260 200 300 Q110 260 110 210 L110 130 Z"
-          opacity="0.7"
-        />
-      </g>
-      <g fill="#4B83FC" opacity="0.5">
-        <circle cx="200" cy="200" r="3" />
-        <circle cx="340" cy="100" r="2" />
-        <circle cx="60" cy="100" r="2" />
-        <circle cx="200" cy="360" r="2" />
-      </g>
-    </svg>
+    <>
+      {/* Dot-grid wash across the whole hero — subtle texture, not focal. */}
+      <svg
+        aria-hidden
+        focusable="false"
+        className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-60"
+        preserveAspectRatio="none"
+      >
+        <defs>
+          <pattern id="hero-grid" width="26" height="26" patternUnits="userSpaceOnUse">
+            <circle cx="1" cy="1" r="1" fill="#4B83FC" opacity="0.18" />
+          </pattern>
+          <linearGradient id="hero-fade" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#ffffff" stopOpacity="0" />
+            <stop offset="100%" stopColor="#ffffff" stopOpacity="1" />
+          </linearGradient>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#hero-grid)" />
+        <rect width="100%" height="100%" fill="url(#hero-fade)" />
+      </svg>
+
+      {/* Layered emblem — nested shield rings evoking the "regulatory
+          perimeter" motif that runs through the rest of the site. */}
+      <svg
+        aria-hidden
+        focusable="false"
+        className="pointer-events-none absolute -right-24 -top-8 z-0 h-[440px] w-[440px] opacity-70 md:-right-16 md:h-[520px] md:w-[520px] lg:-right-12"
+        viewBox="0 0 500 500"
+      >
+        <defs>
+          <radialGradient id="hero-glow" cx="50%" cy="50%" r="55%">
+            <stop offset="0%" stopColor="#4B83FC" stopOpacity="0.25" />
+            <stop offset="65%" stopColor="#4B83FC" stopOpacity="0.06" />
+            <stop offset="100%" stopColor="#4B83FC" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+        <circle cx="250" cy="250" r="230" fill="url(#hero-glow)" />
+        {[220, 180, 140, 100, 60].map((r, i) => (
+          <circle
+            key={r}
+            cx="250"
+            cy="250"
+            r={r}
+            fill="none"
+            stroke="#4B83FC"
+            strokeWidth="0.75"
+            opacity={0.15 + i * 0.08}
+            strokeDasharray={i === 1 || i === 3 ? '2 6' : undefined}
+          />
+        ))}
+        <g stroke="#2e5fcc" strokeWidth="1.25" fill="none" opacity="0.55">
+          <path d="M250 50 L410 120 L410 260 Q410 350 250 430 Q90 350 90 260 L90 120 Z" />
+          <path d="M250 110 L360 155 L360 250 Q360 315 250 370 Q140 315 140 250 L140 155 Z" opacity="0.9" />
+        </g>
+        {/* Orbit dots */}
+        <g fill="#2e5fcc" opacity="0.7">
+          <circle cx="250" cy="250" r="3.5" />
+          <circle cx="410" cy="120" r="2.5" />
+          <circle cx="90" cy="120" r="2.5" />
+          <circle cx="250" cy="430" r="2.5" />
+          <circle cx="470" cy="250" r="2" />
+          <circle cx="30" cy="250" r="2" />
+        </g>
+        {/* Ticker marks around outer ring */}
+        <g stroke="#2e5fcc" strokeWidth="1.5" opacity="0.5">
+          {Array.from({ length: 12 }).map((_, i) => {
+            const a = (i / 12) * Math.PI * 2 - Math.PI / 2;
+            const x1 = 250 + Math.cos(a) * 232;
+            const y1 = 250 + Math.sin(a) * 232;
+            const x2 = 250 + Math.cos(a) * 244;
+            const y2 = 250 + Math.sin(a) * 244;
+            return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} />;
+          })}
+        </g>
+      </svg>
+    </>
   );
 }
