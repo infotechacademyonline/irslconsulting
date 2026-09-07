@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 import { ConsentPreferencesLink } from '@/components/consent/ConsentPreferencesLink';
@@ -13,14 +14,15 @@ export function Footer() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1.1fr]">
           <div>
             <Link href="/" className="inline-flex items-center gap-3 text-ink">
-              <span className="grid h-9 w-9 place-items-center rounded-md bg-brand text-[15px] font-extrabold text-white">
-                IR
-              </span>
-              <span className="flex flex-col leading-tight">
-                <span className="text-[18px] font-extrabold tracking-tight">{site.name}</span>
-                <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-2">
-                  {site.legalName} · Nigeria
-                </span>
+              <Image
+                src="/assets/brand/irsl-logo.png"
+                alt={`${site.name} home`}
+                width={52}
+                height={52}
+                className="h-12 w-12"
+              />
+              <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-2">
+                {site.legalName} · Nigeria
               </span>
             </Link>
             <div className="mt-3 font-mono text-[10.5px] font-medium uppercase tracking-[0.12em] text-brand">
